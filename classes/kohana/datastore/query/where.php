@@ -2,7 +2,11 @@
 
 abstract class Kohana_Datastore_Query_Where extends Datastore_Query {
 
-	protected $_criteria = array();
+	protected $_limit;
+
+	protected $_where = array();
+
+	protected $_where_ops = array();
 
 	public function where($field, $op, $value)
 	{
@@ -11,7 +15,33 @@ abstract class Kohana_Datastore_Query_Where extends Datastore_Query {
 
 	public function and_where($field, $op, $value)
 	{
-		$this->_criteria[] = array($field, $op, $value);
+		// Make sure the operator is supported.
+		if ( ! in_array($op, $this->_where_ops))
+		{
+			throw new Kohana_Exception(
+				'Where operator, :op, not supported by :class',
+				array(
+					':op' => $op,
+					':class' => get_class($this),
+				)
+			);
+		}
+
+		$this->_where[] = array($field, $op, $value);
+
+		return $this;
+	}
+
+	public function limit($number)
+	{
+		$this->_limit = (int) $number;
+		return $this;
+	}
+
+	public function reset()
+	{
+		$this->_where = array();
+		$this->_limit = NULL;
 
 		return $this;
 	}

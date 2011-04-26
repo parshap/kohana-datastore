@@ -2,18 +2,20 @@
 
 class Kohana_Datastore_Query_Create extends Datastore_Query {
 
-	protected $_values = array();
-
 	protected $_what;
 
-	public function __construct($what)
+	protected $_set = array();
+
+	public function __construct($thing)
 	{
-		$this->_what = $what;
+		parent::__construct(Datastore::CREATE, $thing);
 	}
 
-	public function values(array $values)
+	public function set(array $values)
 	{
-		$this->_values = array_merge($this->_values, $values);
+		$this->_set = array_merge($this->_set, $values);
+
+		return $this;
 	}
 
 	public function reset()

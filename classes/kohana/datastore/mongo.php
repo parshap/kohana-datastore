@@ -103,6 +103,11 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 		));
 	}
 
+	public function get_collection($name)
+	{
+		return $this->_db->selectCollection($name);
+	}
+
 	public function create_collection()
 	{
 		// @todo
@@ -136,13 +141,13 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 	/**
 	 * Tries to return a MongoCollection if the property does not exist.
 	 */
-	public function __get(string $name)
+	public function __get($name)
 	{
 		if (self::__isset($name))
 		{
 			return parent::__get($name);
 		}
 
-		return $this->_db->selectCollection($name);
+		return $this->get_collection($name);
 	}
 }
