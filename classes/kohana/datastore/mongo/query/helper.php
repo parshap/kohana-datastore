@@ -2,6 +2,8 @@
 
 abstract class Kohana_Datastore_Mongo_Query_Helper {
 
+	protected $_where_ops = array('=');
+
 	public static function compile_where_criteria(array $where)
 	{
 		$criteria = array();

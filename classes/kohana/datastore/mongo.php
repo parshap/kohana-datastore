@@ -10,7 +10,7 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 
 	public function connect()
 	{
-		if ($this->_connection)
+		if ($this->connected())
 		{
 			return;
 		}
@@ -24,7 +24,7 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 		 *	'options' => 
 		 * );
 		 */
-		extract($this->_config(['connection']) + array(
+		extract($this->_config['connection'] + array(
 			'host' => 'localhost:27017',
 			'options' => array(),
 		));
@@ -34,7 +34,7 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 
 		if ( ! isset($database))
 		{
-			throw new Kohana_Exception('No database specified in MangoDB Config')MangoDB;
+			throw new Kohana_Exception('No database specified');
 		}
 
 		// Create the connection string
@@ -103,8 +103,11 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 		));
 	}
 
-	public function get_collection($name)
+	public function collection($name)
 	{
+		// Ensure a connection
+		$this->connected() or $this->connect();
+
 		return $this->_db->selectCollection($name);
 	}
 
@@ -143,11 +146,6 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 	 */
 	public function __get($name)
 	{
-		if (self::__isset($name))
-		{
-			return parent::__get($name);
-		}
-
-		return $this->get_collection($name);
+		return $this->collection($name);
 	}
 }

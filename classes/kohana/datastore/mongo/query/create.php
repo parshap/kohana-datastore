@@ -8,7 +8,7 @@ abstract class Kohana_Datastore_Mongo_Query_Create
 		$object = $this->_set;
 
 		Datastore::instance($datastore)
-			->get_collection($this->_what)
+			->collection($this->_what)
 			->insert($object);
 	}
 }

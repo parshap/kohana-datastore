@@ -1,8 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Kohana_Datastore_Query_Create extends Datastore_Query {
-
-	protected $_what;
+abstract class Kohana_Datastore_Query_Create extends Datastore_Query {
 
 	protected $_set = array();
 
