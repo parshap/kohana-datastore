@@ -37,7 +37,9 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 
 	public function sort($field, $direction = 1)
 	{
-		$this->_sort[$field] = $direction === 1 ? 1 : -1;
+		$this->_sort[$field] = $direction === Datastore::ASCENDING
+			? Datastore::ASCENDING
+			: Datastore::DESCENDING;
 
 		return $this;
 	}

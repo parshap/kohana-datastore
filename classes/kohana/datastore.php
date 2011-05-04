@@ -15,6 +15,9 @@ abstract class Kohana_Datastore {
 	const UPDATE = 3;
 	const DELETE = 4;
 
+	const ASCENDING = 1;
+	const DESCENDING = -1;
+
 	public function __construct($name, array $config)
 	{
 		$this->_instance = $name;
