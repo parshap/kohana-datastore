@@ -5,11 +5,11 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 	/**
 	 * @var Fields to be returned by the retrieve.
 	 */
-	protected $_fields;
+	protected $_fields = array();
 
 	protected $_offset;
 
-	protected $_sort;
+	protected $_sort = array();
 
 	public function __construct($thing)
 	{
@@ -46,9 +46,9 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 
 	public function reset()
 	{
-		$this->_offset =
-		$this->_fields = NULL;
+		$this->_offset = NULL;
 
+		$this->_fields =
 		$this->_sort = array();
 
 		return parent::reset();

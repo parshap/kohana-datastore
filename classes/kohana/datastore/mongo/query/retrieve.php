@@ -15,9 +15,15 @@ abstract class Kohana_Datastore_Mongo_Query_Retrieve
 			->collection($this->_what)
 			->find($criteria);
 
-		if ($this->_fields !== NULL)
+		if ($this->_fields)
 		{
-			$cursor->fields($this->_fields);
+			$fields = array();
+			foreach ($this->_fields as $field)
+			{
+				$fields[$field] = TRUE;
+			}
+
+			$cursor->fields($fields);
 		}
 
 		if ($this->_limit !== NULL)
@@ -35,6 +41,6 @@ abstract class Kohana_Datastore_Mongo_Query_Retrieve
 			$cursor->sort($this->_sort);
 		}
 
-		return $cursor;
+		return new Datastore_Mongo_Result($cursor);
 	}
 }
