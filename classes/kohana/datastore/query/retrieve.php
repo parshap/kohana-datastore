@@ -7,6 +7,8 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 	 */
 	protected $_fields = array();
 
+	protected $_limit;
+
 	protected $_offset;
 
 	protected $_sort = array();
@@ -24,6 +26,13 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 	public function fields_array($fields = NULL)
 	{
 		$this->_fields = array_merge($this->_fields, $fields);
+
+		return $this;
+	}
+
+	public function limit($number)
+	{
+		$this->_limit = (int) $number;
 
 		return $this;
 	}
@@ -46,6 +55,7 @@ abstract class Kohana_Datastore_Query_Retrieve extends Datastore_Query_Where {
 
 	public function reset()
 	{
+		$this->limit =
 		$this->_offset = NULL;
 
 		$this->_fields =

@@ -2,8 +2,6 @@
 
 abstract class Kohana_Datastore_Query_Where extends Datastore_Query {
 
-	protected $_limit;
-
 	protected $_where = array();
 
 	protected $_where_ops = array();
@@ -32,16 +30,9 @@ abstract class Kohana_Datastore_Query_Where extends Datastore_Query {
 		return $this;
 	}
 
-	public function limit($number)
-	{
-		$this->_limit = (int) $number;
-		return $this;
-	}
-
 	public function reset()
 	{
 		$this->_where = array();
-		$this->_limit = NULL;
 
 		return $this;
 	}
