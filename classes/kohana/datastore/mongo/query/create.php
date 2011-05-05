@@ -10,5 +10,7 @@ abstract class Kohana_Datastore_Mongo_Query_Create
 		Datastore::instance($datastore)
 			->collection($this->_what)
 			->insert($object);
+
+		return Arr::get($this->_set, '_id');
 	}
 }
