@@ -145,18 +145,19 @@ class Datastore_RetrieveTest extends Unittest_TestCase {
 	{
 		return array(
 			array(
-				array('index' => Datastore::ASCENDING),
+				array('id' => Datastore::ASCENDING),
 				array(1, 2, 3, 4),
 			),
 			array(
-				array('index' => Datastore::DESCENDING),
-				array(1, 2, 3, 4),
+				array('id' => Datastore::DESCENDING),
+				array(4, 3, 2, 1),
 			),
 			array(
 				array(
-					'index' => Datastore::DESCENDING
+					'age' => Datastore::ASCENDING,
+					'id' => Datastore::DESCENDING
 				),
-				array(1, 2, 3, 4),
+				array(4, 3, 1, 2),
 			),
 		);
 	}
