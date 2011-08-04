@@ -92,7 +92,7 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 
 	public function command(array $command)
 	{
-		$this->_db->selectCollection('$cmd')->findOne($command);
+		return $this->_db->selectCollection('$cmd')->findOne($command);
 	}
 
 	public function execute($code, array $args = array())
