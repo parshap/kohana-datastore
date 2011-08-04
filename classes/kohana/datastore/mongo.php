@@ -123,7 +123,7 @@ abstract class Kohana_Datastore_Mongo extends Kohana_Datastore {
 
 	public function last_error()
 	{
-		// @todo
+		return @$this->_connection->lastError();
 	}
 
 	public function prev_error()
