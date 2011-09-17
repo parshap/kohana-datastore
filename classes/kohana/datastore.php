@@ -48,7 +48,7 @@ abstract class Kohana_Datastore {
 		{
 			if ($config === NULL)
 			{
-				$config = Kohana::config('datastore')->$name;
+				$config = Kohana::$config->load('datastore')->$name;
 			}
 
 			if ( ! isset($config['type']))
