@@ -10,6 +10,7 @@ abstract class Kohana_Datastore_Mongo_Query_Helper {
 		'<',
 		'<=',
 		'exists',
+		'in',
 	);
 
 	protected static $_mongo_ops = array(
@@ -19,6 +20,7 @@ abstract class Kohana_Datastore_Mongo_Query_Helper {
 		'<' => '$lt',
 		'<=' => '$lte',
 		'exists' => '$exists',
+		'in' => '$in',
 	);
 
 	public static function compile_where_criteria(array $where)
@@ -48,11 +50,12 @@ abstract class Kohana_Datastore_Mongo_Query_Helper {
 				break;
 
 				case '!=':
-				case 'exists':
 				case '>':
 				case '>=':
 				case '<':
 				case '<=':
+				case 'exists':
+				case 'in':
 					$mongo_op = self::$_mongo_ops[$op];
 					$criteria[$field] += array($mongo_op => $value);
 				break;
